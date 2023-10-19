@@ -30,7 +30,7 @@ void renderScene(GLFWwindow* window)
     // Stworz taka macierz transformacji, ktora powoduje ze czworokat przesuwa sie w gore i w dol ekranu, jednoczesnie obracajac sie.
     // Wyslij stworzona macierz do GPU za pomoca funkcji glUniformMatrix4fv zamiast macierzy "translation" i "rotation" z poprzednich zadan
     float yPosition = 0.5f * sin(2.0f * time);  //time-losowa liczba ; 2.0f - predkosc ; sin ma granice -1, 1
-    // wiec jak by duza time nie byla, nadal bedzie -1,1; 0.5f to jest zmniejszenie granic (nie -1,1 a -0.5,0.5)
+                                                   // wiec jak by duza time nie byla, nadal bedzie -1,1; 0.5f to jest zmniejszenie granic (nie -1,1 a -0.5,0.5)
 
     glm::mat4 translation =
     { 1,0,0,0,

@@ -9,10 +9,16 @@
 // funkcja renderujaca scene    
 void renderScene(GLFWwindow* window)
 {
+    float time = glfwGetTime();
 
     // ZADANIE: Przesledz kod i komentarze
     // ZADANIE: Zmien kolor tla sceny, przyjmujac zmiennoprzecinkowy standard RGBA
-    glClearColor(3.7f, 4.5f, 0.3f, 1.9f);
+    float color1 = 12 * sin(20*time);
+    float color2 = 16.8f * sin(13*time);
+    float color3 = 12.1f * sin(9*time);
+    float color4 = 15.2f * sin(3*time);
+
+    glClearColor(color1, color2, color3, color4);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Powinno byc wywolane po kazdej klatce

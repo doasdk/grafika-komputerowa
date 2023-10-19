@@ -37,7 +37,10 @@ void renderScene(GLFWwindow* window)
 	  0,1,0,yPosition,
 	  0,0,1,0,
 	  0,0,0,1 };
-
+	
+	
+	//array = var translate vec3(0, yPosition, 0)
+	
 	translation = glm::transpose(translation);
 
 	Core::drawVAOIndexed(quadVAO, 16);
