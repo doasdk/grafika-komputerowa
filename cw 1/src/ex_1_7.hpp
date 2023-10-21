@@ -17,8 +17,10 @@ float currentRotationAngle = 0.0f;
 
 
 Core::Shader_Loader shaderLoader;
+std::vector<glm::vec3> quadsPositions;
 
-glm::vec3 quadsPositions(0.0f, 0.0f, 0.0f);
+
+glm::vec3 squarePos(0.0f, 0.0f, 0.0f);
 
 void renderScene(GLFWwindow* window)
 {
@@ -31,26 +33,26 @@ void renderScene(GLFWwindow* window)
     //glm::mat4 rotation = glm::mat4(1.0f);
     glm::mat4 transformation = glm::mat4(1.0f);
 
-    transformation = glm::translate(transformation, quadsPositions);
+    for (int i = 0; i < quadsPositions.size(); i++) {
+        glm::mat4 translateNewSquare = glm::translate(transformation, quadsPositions[i]);
+        glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&translateNewSquare);
+        Core::drawVAOIndexed(quadVAO, 6);
+    }
+
+
+    //transformation = glm::translate(transformation, squarePos);
     /*if (key_O) {
-        rotation = glm::rotate(transformation, glm::radians(20.f *time), glm::vec3(0.0f, 0.0f, 1.0f)); 
-    }*/
-   // rotation = glm::translate(rotation, quadsPositions);
-    
-    if (key_O) {
         currentRotationAngle += 0.1f; 
     }
     if (key_P) {
         currentRotationAngle -= 0.1f;
     }
-
     glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::radians(currentRotationAngle), glm::vec3(0.0f, 0.0f, 1.0f));
     transformation = transformation * rotation;
-    
+    */
 
-    glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&transformation);
-    //glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&rotation);
-    Core::drawVAOIndexed(quadVAO, 6);
+    //glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&transformation);
+    //Core::drawVAOIndexed(quadVAO, 6);
 
     glUseProgram(0);
 
@@ -63,12 +65,29 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-
+   /* int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    xpos = ((2 * xpos) / (width)) - 1;
+    ypos = -(((2 * ypos) / (height)) - 1);
+    quadsPositions = glm::vec3(xpos, ypos, 0.0f);
+    */
 }
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+
+    float x = (2 * xpos / width) - 1;
+    float y = -((2 * ypos / height) - 1);
+
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+      
+        quadsPositions.push_back(glm::vec3(x, y, 0.0f));
+    }
+
     printf("%f,%f\n", xpos, ypos);
 }
 
@@ -108,16 +127,16 @@ void processInput(GLFWwindow* window)
     }
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        quadsPositions += glm::vec3(0.0f, 0.001f, 0.0f);
+        squarePos += glm::vec3(0.0f, 0.001f, 0.0f);
     }
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        quadsPositions += glm::vec3(0.0f, -0.001f, 0.0f);
+        squarePos += glm::vec3(0.0f, -0.001f, 0.0f);
     }
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        quadsPositions += glm::vec3(-0.001f, 0.0f, 0.0f);
+        squarePos += glm::vec3(-0.001f, 0.0f, 0.0f);
     }
     if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        quadsPositions += glm::vec3(0.001f, 0.00f, 0.0f);
+        squarePos += glm::vec3(0.001f, 0.00f, 0.0f);
     }
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
             key_O = true;
