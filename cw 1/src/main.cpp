@@ -4,7 +4,7 @@
 
 #include "Shader_Loader.h"
 #include "Render_Utils.h"
-#include "ex_1_7.hpp"
+#include "ex_1_6.hpp"
 
 
 int main(int argc, char ** argv)

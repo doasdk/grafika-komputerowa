@@ -29,7 +29,7 @@ void renderScene(GLFWwindow* window)
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 	float yPosition = 0.5f * sin(2.0f * time); //time-losowa liczba ; 2.0f - predkosc ; sin ma granice -1, 1
-											   // wiec jak by duza time nie byla, nadal bedzie -1,1; 0.5f to jest zmniejszenie granic (nie -1,1 a -0.5,0.5)
+							   // wiec jak by duza time nie byla, nadal bedzie -1,1; 0.5f to jest zmniejszenie granic (nie -1,1 a -0.5,0.5)
 	//std::cout << yPosition<<"\n";
 
 	glm::mat4 translation =

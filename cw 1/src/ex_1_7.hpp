@@ -40,20 +40,20 @@ void renderScene(GLFWwindow* window)
     }
 
 
-    //transformation = glm::translate(transformation, squarePos);
-    /*if (key_O) {
-        currentRotationAngle += 0.1f; 
+    /*transformation = glm::translate(transformation, squarepos);
+    if (key_o) {
+        currentrotationangle += 0.1f; 
     }
-    if (key_P) {
-        currentRotationAngle -= 0.1f;
+    if (key_p) {
+        currentrotationangle -= 0.1f;
     }
-    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::radians(currentRotationAngle), glm::vec3(0.0f, 0.0f, 1.0f));
+    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::radians(currentrotationangle), glm::vec3(0.0f, 0.0f, 1.0f));
     transformation = transformation * rotation;
     */
 
     //glUniformMatrix4fv(glGetUniformLocation(program, "transformation"), 1, GL_FALSE, (float*)&transformation);
     //Core::drawVAOIndexed(quadVAO, 6);
-
+    
     glUseProgram(0);
 
     glfwSwapBuffers(window);
@@ -65,11 +65,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-   /* int width, height;
+    /*int width, height;
     glfwGetWindowSize(window, &width, &height);
     xpos = ((2 * xpos) / (width)) - 1;
     ypos = -(((2 * ypos) / (height)) - 1);
-    quadsPositions = glm::vec3(xpos, ypos, 0.0f);
+    squarePos = glm::vec3(xpos, ypos, 0.0f);
     */
 }
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)

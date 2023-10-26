@@ -39,8 +39,6 @@ void renderScene(GLFWwindow* window)
 	  0,0,0,1 };
 	translation = glm::transpose(translation);
 
-	float cosPos = cos(10);
-	float sinPos = sin(10);
 
 	glm::mat4 rotation =
 	{
