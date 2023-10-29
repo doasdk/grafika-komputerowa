@@ -8,7 +8,7 @@
 #include "Shader_Loader.h"
 #include "Render_Utils.h"
 
-#include "ex_2_1b.hpp"
+#include "ex_2_1a.hpp"
 
 int main(int argc, char** argv)
 {

@@ -19,6 +19,8 @@ GLuint VAO,VBO;
 void renderScene(GLFWwindow* window)
 {
 	float time = glfwGetTime();
+
+
 	glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -27,7 +29,11 @@ void renderScene(GLFWwindow* window)
 	// Do shadera uzytego w tym zadaniu nalezy przeslac nie tylko pozycje, ale rowniez kolory wierzcholkow.
 	// W funkcji init należy przesłać pozycje i kolory do GPU 
 
+	glUniform1f(glGetUniformLocation(program, "timeShader"), time);
+	//std::cout << abs(sin(time * 0.1)) << std::endl;
 	glUseProgram(program);
+
+	
 
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -42,7 +48,7 @@ void renderScene(GLFWwindow* window)
 	// wykorzystaj glDrawArrays do narysowania prostopadłościanu
 
 	glUseProgram(0);
-	glBindVertexArray(0); // Odwiąż vao
+	glBindVertexArray(0); 
 	glfwSwapBuffers(window);
 }
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
