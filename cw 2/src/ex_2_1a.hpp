@@ -29,10 +29,11 @@ void renderScene(GLFWwindow* window)
 	// Do shadera uzytego w tym zadaniu nalezy przeslac nie tylko pozycje, ale rowniez kolory wierzcholkow.
 	// W funkcji init należy przesłać pozycje i kolory do GPU 
 
-	glUniform1f(glGetUniformLocation(program, "timeShader"), time);
+	
 	//std::cout << abs(sin(time * 0.1)) << std::endl;
 	glUseProgram(program);
 
+	glUniform1f(glGetUniformLocation(program, "timeShader"), time);
 	
 
 	glBindVertexArray(VAO);
